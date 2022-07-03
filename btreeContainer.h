@@ -73,15 +73,6 @@ namespace BTree {
          * @return The node with the specified index, or nullptr if not found.
          */
         Node *search(Node *pNode, const int key) {
-            // if it's the first key, then the node is returned
-            if (pNode->keys[0] == key) {
-                return pNode;
-            }
-
-            if (key < pNode->keys[0]) {
-                return search(pNode->children[0], key);
-            }
-
             for (int i = 0; i < m_maxDegree; ++i) {
                 // if the node contains the key, return it
                 if (pNode->keys[i] == key)
@@ -101,7 +92,7 @@ namespace BTree {
 
     private:
         Node *m_root;
-        int m_maxDegree = NODE_MAX_DEGREE;
+        const int m_maxDegree = NODE_MAX_DEGREE;
     };
 }
 
